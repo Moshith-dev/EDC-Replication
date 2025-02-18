@@ -18,7 +18,7 @@
             type="submit" />
         <EdcBreadcrumb :breadCrumbDetails="['Home', 'Products', 'Categories', 'Electronics']"
             type="discrepancy-modal" />
-            <!-- <EdcCalendar  /> -->
+            <EdcCalendar  />
         <EdcCheckbox :checked="isChecked" label="Accept Terms and Conditions" :required="true"
             labelClass="text-blue-600 font-semibold text-xl" />
 
