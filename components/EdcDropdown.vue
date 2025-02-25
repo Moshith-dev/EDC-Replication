@@ -36,9 +36,7 @@
 <template>
   <div class="dropdown-container">
     <!-- Label for the dropdown -->
-    <label v-if="props.label" class="dropdown-label">{{ props.label }}</label>
-
-    <!-- Dropdown select element -->
+    <label v-if="props.label" class="text-lg font-medium">{{ props.label }}</label>
     <select
       :disabled="props.disabled"
       :value="props.value"
@@ -63,10 +61,6 @@
   gap: 0.5rem;
 }
 
-.dropdown-label {
-  font-size: 1rem;
-  font-weight: bold;
-}
 
 .dropdown-select {
   padding: 0.5rem;

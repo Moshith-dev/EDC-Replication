@@ -1,77 +1,41 @@
 <script setup lang="ts">
-  // Define the props for the text input component with explicit types and defaults
-  const props = defineProps({
-    label: {
-      type: String,
-      default: '',
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-    error: {
-      type: String,
-      default: '',
-    },
-  });
+import { ref } from 'vue';
 
-  const emit = defineEmits<{
-    'update:value': [value: string];
-  }>();
-
-  const handleInputChange = (event: Event) => {
-    const inputElement = event.target as HTMLInputElement;
-    emit('update:value', inputElement.value);
-  };
+const props = withDefaults(defineProps<{
+  label?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  error?: string;
+}>(), {
+  label: '',
+  placeholder: '',
+  disabled: false,
+  readonly: false,
+  error: '',
+});
+const localValue = ref("");
 </script>
 
 <template>
   <div class="text-input-container">
-
-    <label v-if="props.label" :for="props.label" class="input-label">
-      {{ props.label }}
+    <label v-if="label" :for="label" class="text-lg font-medium">
+      {{ label }}
     </label>
-
-    <input
-      v-bind="$attrs" 
-      type="text"
-      :value="props.value"
-      :placeholder="props.placeholder"
-      :disabled="props.disabled"
-      :readonly="props.readonly"
-      @input="handleInputChange"
-      class="text-input"
-    />
-
-    <div v-if="props.error" class="error-message">
-      {{ props.error }}
+    <input type="text" v-model="localValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly"
+      class="text-input" />
+    <div v-if="error" class="error-message">
+      {{ error }}
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .text-input-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.input-label {
-  font-size: 1.2rem;
-  width: 500px;
-  color: #333;
 }
 
 .text-input {

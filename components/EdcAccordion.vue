@@ -9,7 +9,6 @@
       title?: string
       content?: string
     }
-    autoOpen?: boolean
   }>()
   // Define props with default styles and autoOpen feature
   
@@ -19,24 +18,7 @@
     isOpen.value = !isOpen.value
   }
   
-  // Handle autoOpen if the prop is set to true
-  watch(() => props.autoOpen, (newVal) => {
-    if (newVal) {
-      isOpen.value = true
-    }
-  })
   
-  const handleMouseover = () => {
-    if (!props.autoOpen) {
-      isOpen.value = true
-    }
-  }
-  
-  const handleMouseleave = () => {
-    if (!props.autoOpen) {
-      isOpen.value = false
-    }
-  }
   </script>
   <template>
     <div :style="customStyles.wrapper" class="accordion-wrapper">
@@ -44,8 +26,7 @@
         :style="customStyles.title"
         class="accordion-header"
         @click="toggle"
-        @mouseover="handleMouseover"
-        @mouseleave="handleMouseleave"
+       
       >
         <span>{{ title }}</span>
         <button class="accordion-toggle">
